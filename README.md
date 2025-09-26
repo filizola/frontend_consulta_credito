@@ -1,59 +1,153 @@
-# FrontendConsultaCredito
+# Frontend Consulta Crédito
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
+Este projeto foi gerado usando [Angular CLI](https://github.com/angular/angular-cli) versão 20.1.5.
 
-## Development server
+## Sobre o Projeto
 
-To start a local development server, run:
+Frontend desenvolvido em Angular para consulta de créditos constituídos, fornecendo uma interface moderna e responsiva para interação com a API de consulta de créditos.
+
+## Tecnologias Utilizadas
+
+- **Angular 18+**
+- **TypeScript**
+- **HTML5 & CSS3/SCSS**
+- **Angular CLI**
+- **RxJS**
+- **Angular HTTP Client**
+
+## Funcionalidades
+
+- Consulta de créditos por número da NFS-e
+- Consulta de crédito específico por número do crédito
+- Interface responsiva e moderna
+- Validação de formulários
+- Tratamento de erros
+- Loading states
+
+## Servidor de Desenvolvimento
+
+Para iniciar um servidor de desenvolvimento local, execute:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Após o servidor estar rodando, abra seu navegador e navegue para `http://localhost:4200/`. A aplicação será recarregada automaticamente sempre que você modificar qualquer um dos arquivos fonte.
 
-## Code scaffolding
+## Estrutura do Projeto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── components/
+│   │   └── consulta-credito/     # Componente principal de consulta
+│   ├── models/
+│   │   └── credito.model.ts      # Modelo de dados do crédito
+│   ├── services/
+│   │   └── credito.service.ts    # Serviço para comunicação com a API
+│   ├── app.config.ts             # Configurações da aplicação
+│   ├── app.routes.ts             # Configuração de rotas
+│   └── app.ts                    # Componente raiz
+├── index.html                    # Página principal
+├── main.ts                       # Ponto de entrada da aplicação
+└── styles.scss                   # Estilos globais
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Geração de Código
+
+O Angular CLI inclui ferramentas poderosas de geração de código. Para gerar um novo componente, execute:
+
+```bash
+ng generate component nome-do-componente
+```
+
+Para uma lista completa de esquemas disponíveis (como `components`, `directives` ou `pipes`), execute:
 
 ```bash
 ng generate --help
 ```
 
-## Building
+## Compilação
 
-To build the project run:
+Para compilar o projeto execute:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Isso irá compilar seu projeto e armazenar os artefatos de compilação no diretório `dist/`. Por padrão, a compilação de produção otimiza sua aplicação para performance e velocidade.
 
-## Running unit tests
+## Executando Testes Unitários
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para executar testes unitários com o test runner [Karma](https://karma-runner.github.io), use o seguinte comando:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Executando Testes End-to-End
 
-For end-to-end (e2e) testing, run:
+Para testes end-to-end (e2e), execute:
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+O Angular CLI não vem com um framework de testes end-to-end por padrão. Você pode escolher um que atenda às suas necessidades.
 
-## Additional Resources
+## Configuração da API
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+O serviço está configurado para se comunicar com a API backend em `http://localhost:8080`. Para alterar essa configuração, modifique o arquivo `src/app/services/credito.service.ts`.
+
+## Executando com Docker
+
+### Pré-requisitos
+- Docker
+- Docker Compose
+
+### Executar o Frontend
+```bash
+# Navegar para o diretório do frontend
+cd frontend-consulta-credito
+
+# Instalar dependências
+npm install
+
+# Executar em modo de desenvolvimento
+ng serve --host 0.0.0.0 --port 4200
+```
+
+A aplicação estará disponível em: `http://localhost:4200`
+
+## Scripts Disponíveis
+
+- `ng serve` - Inicia o servidor de desenvolvimento
+- `ng build` - Compila a aplicação para produção
+- `ng test` - Executa os testes unitários
+- `ng lint` - Executa o linter para verificar qualidade do código
+- `ng e2e` - Executa testes end-to-end
+
+## Recursos Adicionais
+
+Para mais informações sobre o uso do Angular CLI, incluindo referências detalhadas de comandos, visite a página [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli).
+
+## Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona alguma MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## Autor
+
+Desenvolvido como parte de um sistema completo de consulta de créditos, demonstrando conhecimentos em:
+- Desenvolvimento frontend com Angular
+- Integração com APIs REST
+- Design responsivo e moderno
+- Boas práticas de desenvolvimento frontend
+- TypeScript e programação reativa com RxJS
