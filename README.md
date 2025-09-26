@@ -139,10 +139,6 @@ Para mais informações sobre o uso do Angular CLI, incluindo referências detal
 4. Push para a branch (`git push origin feature/MinhaFeature`)
 5. Abra um Pull Request
 
-## Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
 ## Autor
 
 Desenvolvido como parte de um sistema completo de consulta de créditos, demonstrando conhecimentos em:
