@@ -1,0 +1,95 @@
+<div class="consulta-container">
+  <div class="consulta-card">
+    <h2>Consulta de Créditos</h2>
+    
+    <form [formGroup]="consultaForm" (ngSubmit)="onSubmit()" class="consulta-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tipoConsulta">Tipo de Consulta</label>
+          <select id="tipoConsulta" formControlName="tipoConsulta" class="form-control">
+            <option value="">Selecione o tipo de consulta</option>
+            <option value="nfse">Consulta por Número da NFS-e</option>
+            <option value="credito">Consulta por Número do Crédito</option>
+            <option value="tipo">Consulta por Tipo de Crédito</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row" *ngIf="consultaForm.get('tipoConsulta')?.value && consultaForm.get('tipoConsulta')?.value !== 'tipo'">
+        <div class="form-group">
+          <label for="numeroConsulta">{{ getTipoConsultaLabel() }}</label>
+          <input 
+            id="numeroConsulta" 
+            type="text" 
+            formControlName="numeroConsulta" 
+            class="form-control"
+            [placeholder]="getTipoConsultaPlaceholder()">
+        </div>
+      </div>
+
+      <div class="form-row" *ngIf="consultaForm.get('tipoConsulta')?.value === 'tipo'">
+        <div class="form-group">
+          <label for="tipoCredito">Tipo de Crédito</label>
+          <select id="tipoCredito" formControlName="numeroConsulta" class="form-control">
+            <option value="">Selecione o tipo de crédito</option>
+            <option value="ISSQN">ISSQN</option>
+            <option value="Outros">Outros</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="consultaForm.invalid || loading" class="btn btn-primary">
+          {{ loading ? 'Consultando...' : 'Consultar' }}
+        </button>
+        <button type="button" (click)="limparConsulta()" class="btn btn-secondary">
+          Limpar
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="creditos.length > 0" class="results-section">
+      <h3>Resultados da Consulta</h3>
+      <div class="table-container">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Número do Crédito</th>
+              <th>Número NFS-e</th>
+              <th>Data Constituição</th>
+              <th>Tipo de Crédito</th>
+              <th>Valor ISSQN</th>
+              <th>Simples Nacional</th>
+              <th>Alíquota</th>
+              <th>Valor Faturado</th>
+              <th>Valor Dedução</th>
+              <th>Base Cálculo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let credito of creditos">
+              <td>{{ credito.numeroCredito }}</td>
+              <td>{{ credito.numeroNfse }}</td>
+              <td>{{ formatDate(credito.dataConstituicao) }}</td>
+              <td>{{ credito.tipoCredito }}</td>
+              <td>{{ formatCurrency(credito.valorIssqn) }}</td>
+              <td>
+                <span class="chip" [class.chip-sim]="credito.simplesNacional" [class.chip-nao]="!credito.simplesNacional">
+                  {{ credito.simplesNacional ? 'Sim' : 'Não' }}
+                </span>
+              </td>
+              <td>{{ formatPercentage(credito.aliquota) }}</td>
+              <td>{{ formatCurrency(credito.valorFaturado) }}</td>
+              <td>{{ formatCurrency(credito.valorDeducao) }}</td>
+              <td>{{ formatCurrency(credito.baseCalculo) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
